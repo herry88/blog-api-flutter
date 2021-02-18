@@ -18,8 +18,8 @@ class CreateBlogsTable extends Migration
             $table->string('title', 100);
             $table->longText('description')->nullable();
             $table->string('featured_image_url');
-            $table->bigIncrements('category_id');
-            $table->bigIncrements('user_id');
+            $table->bigInteger('category_id');
+            $table->bigInteger('user_id');
             $table->timestamps();
         });
     }

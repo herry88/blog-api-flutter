@@ -14,7 +14,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        //halaman master blade
+        $category = Category::all();
+        return view('category.index', compact('category'));
     }
 
     /**
@@ -24,6 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        abort(404);
         //
     }
 
@@ -36,6 +39,11 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $data = new Category;
+        $data->name = $request->input('category_name');
+        $data->save();
+        // dd($data);
+        return redirect()->route('category.index')->with("success", $request->input("category_name"));
     }
 
     /**
