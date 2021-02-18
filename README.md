@@ -7,6 +7,9 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Media Pembelajaran PJJ 
+[Tutorial Flutter - Laravel (Pemula)](https://www.youtube.com/playlist?list=PL_zC61IAii7AX9ppcAkbqHp6rXXLWorlx)
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
