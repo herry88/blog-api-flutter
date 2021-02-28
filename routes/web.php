@@ -14,4 +14,8 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+use App\Http\Controllers\Api\CategoryController;
+
 Route::resource('category', 'CategoryController');
+

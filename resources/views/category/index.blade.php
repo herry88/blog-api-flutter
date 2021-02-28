@@ -6,10 +6,10 @@
 @section('content')
 <section class="section">
     @if (Session::get('success'))
-                <div class="alert alert-success">
-                    <strong>{{ Session::get('success') }}</strong>
-                </div>
-            @endif
+        <div class="alert alert-success">
+            <strong>{{ Session::get('success') }}</strong>
+        </div>
+    @endif
     <div class="section-header">
       <h1>Category</h1>
     </div>
@@ -61,7 +61,12 @@
                                             <td>{{ $cat->name }}</td>
                                             <td>
                                                 <a href="#" class="btn btn-outline-warning btn-sm-edit"><i class="fas fa-edit"></i></a>
-                                                <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                                <form action="{{ route('category.destroy', $cat->id) }}"  method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+
+                                                </form>
                                             </td>
                                         </tr>
                                     @empty
@@ -80,4 +85,5 @@
         </div>
     </div>
   </section>
+
 @endsection
