@@ -63,9 +63,11 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        //redirect ke halaman edit
+        $category = Category::find($id);
+        return view('category.edit', compact('category'));
     }
 
     /**
@@ -75,9 +77,17 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        //function update
+        $category = Category::find($id);
+        $category->name = $request->input('category_name');
+        if($category->save()){
+            return redirect()->route('category.index')->with('success','Update Berhasil');
+        } else{
+            return redirect()->back()->with('failed','Update Failed');
+        }
+
     }
 
     /**
