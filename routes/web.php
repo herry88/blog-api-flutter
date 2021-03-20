@@ -18,4 +18,4 @@
 use App\Http\Controllers\Api\CategoryController;
 
 Route::resource('category', 'CategoryController');
-
+Route::resource('blogpost', 'BlogController');

@@ -6,6 +6,11 @@
 
 @section('content')
     <section class="section">
+        @if (Session::get('failed'))
+            <div class="alert alert-warning">
+                 <strong>{{ Session::get('failed') }}</strong>
+            </div>
+        @endif
         <div class="section-header">
             <h1>Halaman Edit</h1>
         </div>

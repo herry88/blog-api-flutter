@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Blog;
 use Illuminate\Http\Request;
+use App\Category;
 
 class BlogController extends Controller
 {
@@ -15,6 +16,8 @@ class BlogController extends Controller
     public function index()
     {
         //
+        $d['blogpost'] = Blog::all();
+        return view('blog.index', $d);
     }
 
     /**
@@ -25,6 +28,8 @@ class BlogController extends Controller
     public function create()
     {
         //
+        $c['category'] =  Category::all();
+        return view('blog.create', $c);
     }
 
     /**
