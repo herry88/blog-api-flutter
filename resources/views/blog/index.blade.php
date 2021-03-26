@@ -14,6 +14,14 @@
             Blog Page
         </h2>
         <div class="row">
+          @if(Session::get('success'))
+              <div class="alert alert-success alert-dismissiblefade show" role="alert" id="gone">
+                  <strong> {{ Session::get('success') }} </strong>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+          @endif
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
@@ -60,5 +68,3 @@
     </div>
 </section>
 @endsection
-
-

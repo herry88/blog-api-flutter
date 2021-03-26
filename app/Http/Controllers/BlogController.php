@@ -40,7 +40,30 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //store
+        $blogPost = new Blog;
+        $blogPost->title = $request->input('title');
+        $blogPost->description = $request->input('description');
+        $blogPost->category_id = $request->input('category');
+        $blogPost->user_id = 0;
+        if($blogPost->save()){
+           $photo = $request->file('image');
+           if($photo != null){
+               $ext = $photo->getClientOriginalExtension();
+               $fileName = rand(10000, 50000).'.'. $ext;
+               if($ext == 'jpg' || $ext == 'png'){
+                   if($photo->move(public_path(), $fileName)){
+                       $blogPost = Blog::find($blogPost->id);
+                       $blogPost->featured_image_url = url('/').'/'. $fileName;
+                       $blogPost->save();
+                   }
+               }
+
+           }
+           // dd($blogPost);
+           return redirect()->route('blogpost.index')->with('success', 'Blog post information saved successfully!');
+       }
+       return redirect()->back()->with('failed', 'Blog post information could not save!');
     }
 
     /**

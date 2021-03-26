@@ -19,9 +19,18 @@
                     <div class="card-header">
                         <h4>Form BlogPage</h4>
                     </div>
+                    @if(Session::get('failed'))
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert" id="gone">
+                            <strong> {{ Session::get('failed') }} </strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                     <div class="card-body">
-                        <form action="#" method="post">
+                        <form action="{{route('blogpost.store')}}" method="post" enctype="multipart/form-data">
                             @csrf
+                            @method('POST')
                             <div class="form-group">
                                 <label for="">Title</label>
                                 <input type="text" name="title"  placeholder="Title" class="form-control">
