@@ -75,6 +75,7 @@ class BlogController extends Controller
     public function show(Blog $blog)
     {
         //
+        App::abort((404), 'Tidak Ada');
     }
 
     /**
@@ -83,9 +84,12 @@ class BlogController extends Controller
      * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
+    public function edit($id)
     {
         //
+        $c['category'] = Category::all();
+        $c['blog'] = Blog::find($id);
+        return view('blog.edit', $c);
     }
 
     /**
@@ -95,9 +99,31 @@ class BlogController extends Controller
      * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, $id)
     {
         //
+        $blogPost = Blog::find($id);
+        $blogPost->title = $request->input('title');
+        $blogPost->description = $request->input('description');
+        $blogPost->category_id = $request->input('category');
+        $blogPost->user_id = 0;
+        if($blogPost->save()){
+           $photo = $request->file('image');
+           if($photo != null){
+               $ext = $photo->getClientOriginalExtension();
+               $fileName = rand(10000, 50000).'.'. $ext;
+               if($ext == 'jpg' || $ext == 'png'){
+                   if($photo->move(public_path(), $fileName)){
+                       $blogPost = Blog::find($blogPost->id);
+                       $blogPost->featured_image_url = url('/').'/'. $fileName;
+                       $blogPost->save();
+                   }
+               }
+            }
+            return redirect()->route('blogpost.index')->with('success', 'Blog post information saved successfully!');
+        }
+        return redirect()->back()->with('failed', 'Blog post information could not save!');
+
     }
 
     /**
@@ -106,7 +132,7 @@ class BlogController extends Controller
      * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
+    public function destroy($id)
     {
         //
     }

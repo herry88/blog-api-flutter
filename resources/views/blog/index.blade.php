@@ -47,10 +47,19 @@
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{ $bp->title }}</td>
+                                            <td>{{ $bp->category->name }}</td>
                                             <td>{{ $bp->description }}</td>
-                                            <td>{{ $bp->category_id }}</td>
-                                            <td>{{ $bp->featured_image_url }}</td>
-                                            <td></td>
+
+                                            <td>
+                                              @if(!empty($bp->featured_image_url))
+                                                <img src="{{ asset($bp->featured_image_url) }}" width="100" height="100">
+                                                @else
+                                                <img src="https://via.placeholder.com/50x50">
+                                              @endif
+                                            </td>
+                                            <td> <a href="{{ route('blogpost.edit', $bp->id) }}" class="btn btn-outline-primary btn-sm">Edit</a>
+                                              <a href="#" class="btn btn-outline-danger btn-sm">Delete</a>
+                                            </td>
                                         </tr>
                                     @empty
                                         <tr>
