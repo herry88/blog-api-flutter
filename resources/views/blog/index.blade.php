@@ -58,7 +58,11 @@
                                               @endif
                                             </td>
                                             <td> <a href="{{ route('blogpost.edit', $bp->id) }}" class="btn btn-outline-primary btn-sm">Edit</a>
-                                              <a href="#" class="btn btn-outline-danger btn-sm">Delete</a>
+                                                <form action="{{route('blogpost.destroy', $bp->id)}}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @empty

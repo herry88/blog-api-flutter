@@ -75,7 +75,7 @@ class BlogController extends Controller
     public function show(Blog $blog)
     {
         //
-        App::abort((404), 'Tidak Ada');
+       abort(404);
     }
 
     /**
@@ -135,5 +135,10 @@ class BlogController extends Controller
     public function destroy($id)
     {
         //
+        if(Blog::destroy($id))
+        {
+            return redirect()->back()->with('success', 'Deleted successfully');
+        }
+        return redirect()->back()->with('failed', 'Could not delete');
     }
 }
