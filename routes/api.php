@@ -17,4 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::resource('get-all-blog', 'Api\BlogPostController');
+
+Route::resource('get-all-categori', 'Api\CategoryController');
+
 
