@@ -54,7 +54,7 @@ class BlogController extends Controller
                if($ext == 'jpg' || $ext == 'png'){
                    if($photo->move(public_path(), $fileName)){
                        $blogPost = Blog::find($blogPost->id);
-                       $blogPost->featured_image_url = url('/').'/'. $fileName;
+                       $blogPost->featured_image_url = url('/').'/public/'. $fileName;
                        $blogPost->save();
                    }
                }

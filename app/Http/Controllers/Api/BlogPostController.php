@@ -15,7 +15,13 @@ class BlogPostController extends Controller
      */
     public function index()
     {
-        return Blog::all();
+        $blog = Blog::all();
+        foreach($blog as $blogs){
+            $blogs->category;
+
+        }
+        return $blogs;
+
     }
 
     /**

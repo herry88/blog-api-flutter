@@ -11,7 +11,10 @@ class Blog extends Model
     protected $fillable = ['title',
                           'description','featured_image_url'
                           ,'category_id','user_id'];
+
     public function category(){
-      return $this->belongsTo(Category::class);
+        return $this->hasOne('App\Category','id','category_id');
     }
+
+
 }
