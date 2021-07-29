@@ -16,11 +16,11 @@ class BlogPostController extends Controller
     public function index()
     {
         $blog = Blog::all();
-        foreach($blog as $blogs){
-            $blogs->category;
+        // foreach($blog as $blogs){
+        //     $blogs->category;
 
-        }
-        return $blogs;
+        // }
+        return $blog;
 
     }
 
